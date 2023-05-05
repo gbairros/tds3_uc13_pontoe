@@ -55,7 +55,12 @@
 
                 $usuario = new Usuario();
                 $valida = $usuario->autenticar($login, $senha);
+
                 if ($valida == true){
+                    session_start();
+	                $_SESSION["logado"] = true;
+                    $_SESSION["login"] = $login;
+
                     $retorno = ["msg" =>"", "erro"=>"0", "url" => "principal.php"];
                     echo json_encode($retorno);
                 }
@@ -64,8 +69,14 @@
                     echo json_encode($retorno);
                     json_decode($dados);
                 }
-                
-            }    
+            }   
+            else if($acao == "logout"){
+                session_start();
+                unset($_SESSION);
+                session_destroy();
+            
+                header("location:../view/login.php");
+            }
 
         }
     }

@@ -1,5 +1,5 @@
 <?php
-	//require_once("../infra/valida_sessao.php");
+	require_once("../infra/valida_sessao.php");
 ?>
 <html>
 	<head>
@@ -7,7 +7,7 @@
 	</head>	
 
 	<body>
-		<h3>Ola eu sou a tela principal - Login com Sucesso!!</h3>
+		<h4>Ola <i><?php echo $_SESSION["login"];?> </i> eu sou a tela principal - Login com Sucesso!!</h4>
 		<ul>
 			<li>Usuario</li>
 			<ul>
@@ -16,6 +16,6 @@
 			</ul>
 		</ul>
 		
-		<a href="logout.php">Sair</a>
+		<a href="../controller/usuario_controller.php?acao=logout">Sair</a>
 </body>
 </html>
