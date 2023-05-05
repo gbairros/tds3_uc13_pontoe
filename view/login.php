@@ -11,14 +11,18 @@
      			 	login: $("#login").val(),
       			 	senha: $("#senha").val(),
     			};
+				
 				$.ajax({
 					type: "POST",
-					url: "../controller/processa_login.php",
+					url: "../controller/usuario_controller.php?acao=logar",
 					data: formDados,
 					dataType: "json",
 					}).done(function (dataRetorno) {
 						if(dataRetorno.erro == 0){
-							alert(dataRetorno.msg);
+							window.location.href = dataRetorno.url;
+						}
+						else{
+							alert(dataRetorno.msg)
 						}
 						
 					});

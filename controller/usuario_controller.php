@@ -47,6 +47,24 @@
                 $dados = $usuario->buscarPorId($id);
                 
                 require_once("../view/usuario/editar_usuario.php");
+            }  
+            
+            else if($acao == "logar"){
+                $login = $post["login"];
+                $senha = $post["senha"];
+
+                $usuario = new Usuario();
+                $valida = $usuario->autenticar($login, $senha);
+                if ($valida == true){
+                    $retorno = ["msg" =>"", "erro"=>"0", "url" => "principal.php"];
+                    echo json_encode($retorno);
+                }
+                else{
+                    $retorno = ["msg" =>"Senha Invalida!!", "erro"=>"1"];
+                    echo json_encode($retorno);
+                    json_decode($dados);
+                }
+                
             }    
 
         }

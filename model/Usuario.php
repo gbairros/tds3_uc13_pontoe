@@ -83,6 +83,7 @@ class Usuario
 
     public function autenticar($login, $senha)
     {
+        $senha_cripto = hash("sha3-256", $senha);
         $database = new Database();
         $con = $database->connect();
 
@@ -90,7 +91,7 @@ class Usuario
 
         $st = $con->prepare($sql);
         $st->bindParam(':login', $login);
-        $st->bindParam(':senha', $senha);
+        $st->bindParam(':senha', $senha_cripto);
         $retorno = $st->execute();
         $dados = $st->fetchAll();
 
