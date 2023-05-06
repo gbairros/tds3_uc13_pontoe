@@ -56,13 +56,27 @@ class Usuario
         $st = $con->prepare($sql);
         $st->bindParam(':id', $id);
 
+        $resultado = $st->execute();
+
+        $db->close();
+        return $resultado;
+    }
+
+
+    public function deletar($id)
+    {
+        $db = new Database();
+        $con = $db->connect();
+
+        $sql = "DELETE FROM usuario WHERE id = :id";
+        $st = $con->prepare($sql);
+        $st->bindParam(':id', $id);
+
         $status = $st->execute();
-        $dados = $st->fetchAll();
 
         $db->close();
         return $dados;
     }
-
 
 
     public function listarTodos($pagina = null, $contador = 100)

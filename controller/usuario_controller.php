@@ -77,6 +77,15 @@
             
                 header("location:../view/login.php");
             }
+            else if($acao == "deletar"){
+                $id = $get["id"];
+                $usuario = new Usuario();
+                $dados = $usuario->deletar($id);
+                
+                $controller = new UsuarioController();
+                $_GET["acao"] = "listar";
+                $controller->execute($_POST, $_GET);
+            }  
 
         }
     }

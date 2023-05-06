@@ -19,7 +19,7 @@
 				echo "<td>".$dados[$i]["sobrenome"]."</td>";
 				echo "<td>".$dados[$i]["email"]."</td>";
 				echo "<td>".$dados[$i]["login"]."</td>";
-				echo "<td align='center'><a href='#'>x</a></td>";
+				echo "<td align='center'><a href=\"../../../controller/usuario_controller.php?acao=deletar&id=".$dados[$i]["id"]."\">x</a></td>";
 				echo "</tr>";
 			}
 			?>
