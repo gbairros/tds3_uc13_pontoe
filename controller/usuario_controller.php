@@ -82,7 +82,7 @@
             else if($acao == "deletar"){
                 $id = $get["id"];
                 $usuario = new Usuario();
-            $dados = $usuario->deletar($id);
+                $dados = $usuario->deletar($id);
                 
                 $this->listarUsuarios();
             }  
@@ -98,31 +98,6 @@
     
   
   $controller = new UsuarioController();
-  $controller->execute($_POST, $_GET);
+  $controller->execute($_POST, $_GET); 
   
   
-  
-  
-  /* 
-  
-  session_start();
-
-    require_once ("Usuario.php");
-
-    $login = $_POST["login"];
-    $senha = $_POST["senha"];
-
-    $usuario = new Usuario();
-    $senha_cripto = hash("sha3-256", $senha);
-    $status = $usuario->autenticar($login, $senha_cripto);
-
-    if ($status == true){
-        $_SESSION["logado"] = true;
-        $_SESSION["user"] = $login;
-
-        header("location:principal.php");
-    }
-    else{
-        echo "Ops!!! Usuário/senha Inválidos :(";
-    }
-*/
