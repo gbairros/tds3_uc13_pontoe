@@ -2,7 +2,7 @@
     require_once "../model/Usuario.php";
 
     class UsuarioController{
-
+        
         public function execute($post, $get){
             $acao = $get['acao'];
             if ($acao == "cadastrar"){
@@ -28,7 +28,12 @@
                     $usuario->__set("senha", $senha_hash);
                    
                     if($usuario->salvar() == true){
-                        echo "Usuario Cadastrado com Sucesso!";
+                        $retorno = ["msg" =>"Usuário cadastrado com sucesso!", "erro"=>"0", "url" => "../principal.php"];
+                        echo json_encode($retorno);
+                    }
+                    else{
+                        $retorno = ["msg" =>"Erro ao cadastrar o usuário!!", "erro"=>"1"];
+                        echo json_encode($retorno);
                     }
                 }
                 else{
@@ -36,10 +41,7 @@
                 }
             }
             else if($acao == "listar"){
-                $usuario = new Usuario();
-                $dados = $usuario->listarTodos();
-
-                require_once("../view/usuario/listar_usuario.php");
+               $this->listarUsuarios();
             }
             else if($acao == "editar"){
                 $id = $get["id"];
@@ -80,13 +82,17 @@
             else if($acao == "deletar"){
                 $id = $get["id"];
                 $usuario = new Usuario();
-                $dados = $usuario->deletar($id);
+            $dados = $usuario->deletar($id);
                 
-                $controller = new UsuarioController();
-                $_GET["acao"] = "listar";
-                $controller->execute($_POST, $_GET);
+                $this->listarUsuarios();
             }  
+        }
 
+        private function listarUsuarios(){
+            $usuario = new Usuario();
+            $dados = $usuario->listarTodos();
+
+            require_once("../view/usuario/listar_usuario.php");
         }
     }
     
