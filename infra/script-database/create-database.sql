@@ -18,3 +18,10 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (login, senha, nome, sobrenome, email) VALUES 
 ('admin','7d4e3eec80026719639ed4dba68916eb94c7a49a053e05c8f9578fe4e5a3d7ea','Admin','Admin','admin@gmail.com');
+
+
+/*
+  Usuário e senha inicial do banco
+  user: admin
+  pass: 12345
+*/
