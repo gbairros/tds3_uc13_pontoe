@@ -1,5 +1,16 @@
 <html>
-	<head><title>Login</title></head>	
+	<head>
+		<title>Login</title>
+		<script type="text/javascript">
+			function excluir(id){
+				retorno = confirm("Tem certeza que deseja excluir o ID="+id+" ?")
+				if(retorno){
+					alert("Excluindoo!!");
+					document.location.href = "../../../controller/usuario_controller.php?acao=deletar&id="+id;
+				}
+			}
+		</script>
+	</head>	
 	<body>
         <h2>Listar Usuários</h2>
 		<table border="1">
@@ -19,7 +30,7 @@
 				echo "<td>".$dados[$i]["sobrenome"]."</td>";
 				echo "<td>".$dados[$i]["email"]."</td>";
 				echo "<td>".$dados[$i]["login"]."</td>";
-				echo "<td align='center'><a href=\"../../../controller/usuario_controller.php?acao=deletar&id=".$dados[$i]["id"]."\">x</a></td>";
+				echo "<td align='center'><a href='#' onclick='excluir(".$dados[$i]["id"].")'>x</a></td>";
 				echo "</tr>";
 			}
 			?>
@@ -29,4 +40,5 @@
 			<br>
 			<a href="../view/principal.php">Principal</a>
 </body>
+
 </html>
