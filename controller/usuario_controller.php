@@ -86,6 +86,45 @@
                 
                 $this->listarUsuarios();
             }  
+        
+            if ($acao == "atualizar"){
+                $usuario = new Usuario();
+
+                $id = $post["id"];
+                $usuario->__set("id", $id);
+
+                $nome = $post["nome"];
+                $usuario->__set("nome", $nome);
+
+                $sobrenome = $post["sobrenome"];
+                $usuario->__set("sobrenome", $sobrenome);
+
+                $email = $post["email"];
+                $usuario->__set("email", $email);
+
+                $login = $post["login"];
+                $usuario->__set("login", $login);
+
+                $senha = $post["senha"];
+                $confirmar_senha = $post["confirmar_senha"];
+                
+                if ($senha == $confirmar_senha){
+                    $senha_hash = hash("sha3-256", $senha);
+                    $usuario->__set("senha", $senha_hash);
+                   
+                    if($usuario->atualizar() == true){
+                        $retorno = ["msg" =>"Usuário atualizado com sucesso!", "erro"=>"0", "url" => "../view/principal.php"];
+                        echo json_encode($retorno);
+                    }
+                    else{
+                        $retorno = ["msg" =>"Erro ao atualizar o usuário!!", "erro"=>"1"];
+                        echo json_encode($retorno);
+                    }
+                }
+                else{
+                    //enviar msg de erro
+                }
+            }
         }
 
         private function listarUsuarios(){

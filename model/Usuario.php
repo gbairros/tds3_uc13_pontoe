@@ -3,6 +3,7 @@ require_once ("../infra/Database.php");
 
 class Usuario
 {
+    private $id;
     private $login;
     private $senha;
     private $nome;
@@ -116,5 +117,30 @@ class Usuario
         else{
             return false;
         }
+    }
+
+    public function atualizar(){
+        $db = new Database();
+        $con = $db->connect();
+
+        $sql = "UPDATE usuario set nome = :nome, sobrenome = :sobrenome, email = :email, 
+                    login = :login WHERE id = :id";
+        
+        $st = $con->prepare($sql);
+        $st->bindParam(':nome', $this->nome);
+        $st->bindParam(':sobrenome', $this->sobrenome);
+        $st->bindParam(':email', $this->email);
+        $st->bindParam(':login', $this->login);
+        $st->bindParam(':id', $this->id);
+	    
+        $status = $st->execute();
+
+        if ($status == true){
+            return true;
+        }
+        else{
+            return false;
+        }
+
     }
 }
