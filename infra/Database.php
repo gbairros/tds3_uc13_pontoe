@@ -42,4 +42,8 @@
         public function close(){
             $this->connection = null;
         }
+
+        public function teste(){
+            echo "Ola eu sou a classe banco\n";
+        }
     }
