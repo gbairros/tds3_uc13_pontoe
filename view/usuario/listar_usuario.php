@@ -1,3 +1,7 @@
+<?php
+	//require_once("../../infra/valida_sessao.php");
+?>
+
 <html>
 	<head>
 		<title>Login</title>

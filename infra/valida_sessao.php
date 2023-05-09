@@ -2,7 +2,7 @@
     function valida_sessao(){
         session_start();
 	    if (empty($_SESSION["logado"])){
-		    header("location: login.php");
+		    header("location:../view/login.php");
 	    }
     }
 

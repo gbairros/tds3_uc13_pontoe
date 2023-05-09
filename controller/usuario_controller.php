@@ -113,7 +113,10 @@
                     $usuario->__set("senha", $senha_hash);
                    
                     if($usuario->atualizar() == true){
-                        $retorno = ["msg" =>"Usuário atualizado com sucesso!", "erro"=>"0", "url" => "../view/principal.php"];
+                        $retorno["msg"] = "Usuário atualizado com sucesso!";
+                        $retorno["erro"] = "0";
+                        $retorno["url"] = "../view/principal.php";
+                        
                         echo json_encode($retorno);
                     }
                     else{

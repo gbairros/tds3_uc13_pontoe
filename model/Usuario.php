@@ -134,6 +134,7 @@ class Usuario
         $st->bindParam(':id', $this->id);
 	    
         $status = $st->execute();
+        
 
         if ($status == true){
             return true;
